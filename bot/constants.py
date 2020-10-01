@@ -142,7 +142,7 @@ class Icons:
 
 
 class Lovefest:
-    role_id = int(environ.get("SEASONALBOT_LOVEFEST_ROLE_ID", 0))
+    role_id = int(environ.get("SEASONALBOT_LOVEFEST_ROLE_ID", ''))
 
 
 class Month(enum.IntEnum):
@@ -170,20 +170,20 @@ if Client.month_override is not None:
 
 
 class Roles(NamedTuple):
-    admin = int(environ.get("SEASONALBOT_ADMIN_ROLE_ID", 0))
-    announcements = 0
-    champion = 0
-    contributor = 0
-    developer = 0
-    devops = 0
-    jammer = 0
-    moderator = 0
-    muted = 0
-    owner = 0
-    verified = 0
-    helpers = 0
-    rockstars = 0
-    core_developers = 0
+    owner = int(environ.get("SEASONALBOT_OWNER_ROLE_ID", 0))
+    admin = int(environ.get("SEASONALBOT_ADMIN_ROLE_ID", 1))
+    moderator = int(environ.get("SEASONALBOT_MOD_ROLE_ID", 2))
+    helpers = int(environ.get("SEASONALBOT_HELPER_ROLE_ID", 3))
+    # announcements = 0
+    # champion = 0
+    # contributor = 0
+    # developer = 0
+    # devops = 0
+    # jammer = 0
+    # muted = 0
+    # verified = 0
+    # rockstars = 0
+    # core_developers = 0
 
 
 class Tokens(NamedTuple):
