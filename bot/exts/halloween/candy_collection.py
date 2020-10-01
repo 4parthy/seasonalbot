@@ -18,7 +18,7 @@ json_location = os.path.join("bot", "resources", "halloween", "candy_collection.
 # chance is 1 in x range, so 1 in 20 range would give 5% chance (for add candy)
 ADD_CANDY_REACTION_CHANCE = 10  # 10%
 ADD_CANDY_EXISTING_REACTION_CHANCE = 10  # 10%
-ADD_SKULL_REACTION_CHANCE = 10  # 10%
+ADD_SKULL_REACTION_CHANCE = 15  # 5%
 ADD_SKULL_EXISTING_REACTION_CHANCE = 20  # 5%
 
 

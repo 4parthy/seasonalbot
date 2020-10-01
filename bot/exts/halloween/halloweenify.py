@@ -17,7 +17,7 @@ class Halloweenify(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
 
-    @commands.cooldown(1, 300, BucketType.user)
+    @commands.cooldown(1, 60, BucketType.user)
     @commands.command()
     async def halloweenify(self, ctx: commands.Context) -> None:
         """Change your nickname into a much spookier one!"""
