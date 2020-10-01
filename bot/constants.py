@@ -142,7 +142,7 @@ class Icons:
 
 
 class Lovefest:
-    role_id = int(environ.get("SEASONALBOT_LOVEFEST_ROLE_ID", ''))
+    role_id = int(environ.get("SEASONALBOT_LOVEFEST_ROLE_ID", '4'))
 
 
 class Month(enum.IntEnum):
