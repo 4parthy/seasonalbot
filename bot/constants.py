@@ -32,61 +32,61 @@ log = logging.getLogger(__name__)
 class AdventOfCode:
     leaderboard_cache_age_threshold_seconds = 3600
     leaderboard_id = 631135
-    leaderboard_join_code = str(environ.get("AOC_JOIN_CODE", None))
+    leaderboard_join_code = str(environ.get("SEASONALBOT_AOC_JOIN_CODE", None))
     leaderboard_max_displayed_members = 10
-    year = int(environ.get("AOC_YEAR", datetime.utcnow().year))
-    role_id = int(environ.get("AOC_ROLE_ID", 518565788744024082))
+    year = int(environ.get("SEASONALBOT_AOC_YEAR", datetime.utcnow().year))
+    role_id = int(environ.get("SEASONALBOT_AOC_ROLE_ID", 0))
 
 
 class Branding:
-    cycle_frequency = int(environ.get("CYCLE_FREQUENCY", 3))  # 0: never, 1: every day, 2: every other day, ...
+    cycle_frequency = int(environ.get("SEASONALBOT_CYCLE_FREQUENCY", 3))  # 0: never, 1: every day, 2: every 2 days, ...
 
 
 class Channels(NamedTuple):
-    admins = 365960823622991872
-    advent_of_code = int(environ.get("AOC_CHANNEL_ID", 517745814039166986))
-    announcements = int(environ.get("CHANNEL_ANNOUNCEMENTS", 354619224620138496))
-    big_brother_logs = 468507907357409333
-    bot = 267659945086812160
-    checkpoint_test = 422077681434099723
-    devalerts = 460181980097675264
-    devlog = int(environ.get("CHANNEL_DEVLOG", 622895325144940554))
-    dev_contrib = 635950537262759947
-    dev_branding = 753252897059373066
-    help_0 = 303906576991780866
-    help_1 = 303906556754395136
-    help_2 = 303906514266226689
-    help_3 = 439702951246692352
-    help_4 = 451312046647148554
-    help_5 = 454941769734422538
-    helpers = 385474242440986624
-    message_log = 467752170159079424
-    mod_alerts = 473092532147060736
-    modlog = 282638479504965634
-    off_topic_0 = 291284109232308226
-    off_topic_1 = 463035241142026251
-    off_topic_2 = 463035268514185226
-    python = 267624335836053506
-    reddit = 458224812528238616
-    seasonalbot_commands = int(environ.get("CHANNEL_SEASONALBOT_COMMANDS", 607247579608121354))
-    seasonalbot_voice = int(environ.get("CHANNEL_SEASONALBOT_VOICE", 606259004230074378))
-    staff_lounge = 464905259261755392
-    verification = 352442727016693763
-    python_discussion = 267624335836053506
-    show_your_projects = int(environ.get("CHANNEL_SHOW_YOUR_PROJECTS", 303934982764625920))
-    show_your_projects_discussion = 360148304664723466
-    hacktoberfest_2019 = 628184417646411776
+    admins = int(environ.get("SEASONALBOT_ADMIN_CHANNEL_ID", 0))
+    advent_of_code = int(environ.get("SEASONALBOT_AOC_CHANNEL_ID", 0))
+    announcements = int(environ.get("SEASONALBOT_ANNOUNCEMENTS_CHANNEL_ID", 0))
+    big_brother_logs = 0
+    bot = int(environ.get("SEASONALBOT_BOT_CHANNEL_ID", 0))
+    checkpoint_test = 0
+    devalerts = 0
+    devlog = int(environ.get("SEASONALBOT_DEVLOG_CHANNEL_ID", 0))
+    dev_contrib = 0
+    dev_branding = 0
+    help_0 = 0
+    help_1 = 0
+    help_2 = 0
+    help_3 = 0
+    help_4 = 0
+    help_5 = 0
+    helpers = 0
+    message_log = 0
+    mod_alerts = 0
+    modlog = 0
+    off_topic_0 = int(environ.get("SEASONALBOT_OFFTOPIC_CHANNEL_ID", 0))
+    off_topic_1 = int(environ.get("SEASONALBOT_OFFTOPIC_1_CHANNEL_ID", 0))
+    off_topic_2 = int(environ.get("SEASONALBOT_OFFTOPIC_2_CHANNEL_ID", 0))
+    python = 0
+    reddit = 0
+    seasonalbot_commands = int(environ.get("SEASONALBOT_COMMANDS_CHANNEL_ID", 0))
+    seasonalbot_voice = int(environ.get("SEASONALBOT_VOICE_CHANNEL_ID", 0))
+    staff_lounge = 0
+    verification = 0
+    python_discussion = 0
+    show_your_projects = 0
+    show_your_projects_discussion = 0
+    hacktoberfest_2019 = 0
 
 
 class Client(NamedTuple):
-    guild = int(environ.get("SEASONALBOT_GUILD", 267624335836053506))
-    prefix = environ.get("PREFIX", ".")
+    guild = int(environ.get("SEASONALBOT_DISCORD_SERVER_ID", 0))
+    prefix = environ.get("SEASONALBOT_PREFIX", ".")
     token = environ.get("SEASONALBOT_TOKEN")
     sentry_dsn = environ.get("SEASONALBOT_SENTRY_DSN")
     debug = environ.get("SEASONALBOT_DEBUG", "").lower() == "true"
-    github_bot_repo = "https://github.com/python-discord/seasonalbot"
+    github_bot_repo = "https://github.com/4parthy/seasonalbot"
     # Override seasonal locks: 1 (January) to 12 (December)
-    month_override = int(environ["MONTH_OVERRIDE"]) if "MONTH_OVERRIDE" in environ else None
+    month_override = int(environ["SEASONALBOT_MONTH_OVERRIDE"]) if "SEASONALBOT_MONTH_OVERRIDE" in environ else None
 
 
 class Colours:
@@ -130,7 +130,7 @@ class Emojis:
 
 
 class Hacktoberfest(NamedTuple):
-    voice_id = 514420006474219521
+    voice_id = Channels.seasonalbot_voice
 
 
 class Icons:
@@ -142,7 +142,7 @@ class Icons:
 
 
 class Lovefest:
-    role_id = int(environ.get("LOVEFEST_ROLE_ID", 542431903886606399))
+    role_id = int(environ.get("SEASONALBOT_LOVEFEST_ROLE_ID", 0))
 
 
 class Month(enum.IntEnum):
@@ -170,20 +170,20 @@ if Client.month_override is not None:
 
 
 class Roles(NamedTuple):
-    admin = int(environ.get("SEASONALBOT_ADMIN_ROLE_ID", 267628507062992896))
-    announcements = 463658397560995840
-    champion = 430492892331769857
-    contributor = 295488872404484098
-    developer = 352427296948486144
-    devops = 409416496733880320
-    jammer = 423054537079783434
-    moderator = 267629731250176001
-    muted = 277914926603829249
-    owner = 267627879762755584
-    verified = 352427296948486144
-    helpers = 267630620367257601
-    rockstars = 458226413825294336
-    core_developers = 587606783669829632
+    admin = int(environ.get("SEASONALBOT_ADMIN_ROLE_ID", 0))
+    announcements = 0
+    champion = 0
+    contributor = 0
+    developer = 0
+    devops = 0
+    jammer = 0
+    moderator = 0
+    muted = 0
+    owner = 0
+    verified = 0
+    helpers = 0
+    rockstars = 0
+    core_developers = 0
 
 
 class Tokens(NamedTuple):
